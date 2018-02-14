@@ -5,14 +5,14 @@ package io.pivotal.escqrs.apiservice.widget;
  */
 public class WidgetNotFoundException extends RuntimeException {
 
-    private final Long id;
+	private final Long id;
 
-    public WidgetNotFoundException(Long id) {
-        super("widget-not-found-" + id);
-        this.id = id;
-    }
+	public WidgetNotFoundException(Long id) {
+		super("widget-not-found-" + id);
+		this.id = id;
+	}
 
-    public Long getWidgetId() {
-        return id;
-    }
+	public Long getWidgetId() {
+		return id;
+	}
 }

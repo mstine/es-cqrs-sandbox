@@ -7,6 +7,7 @@ import java.util.Optional;
  * @author Matt Stine
  */
 public interface WidgetQueryService {
-    Collection<Widget> getAll();
-    Optional<Widget> get(Long id);
+	Collection<Widget> getAll();
+
+	Optional<Widget> get(Long id);
 }

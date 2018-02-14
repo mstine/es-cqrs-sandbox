@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @NoArgsConstructor
 public class Widget {
-    @NonNull private Long id;
-    @NonNull private String name;
+	@NonNull
+	private Long id;
+	@NonNull
+	private String name;
 }

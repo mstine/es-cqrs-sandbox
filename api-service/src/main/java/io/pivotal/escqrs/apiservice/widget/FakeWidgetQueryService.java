@@ -8,15 +8,15 @@ import java.util.Optional;
  * @author Matt Stine
  */
 public class FakeWidgetQueryService implements WidgetQueryService {
-    @Override
-    public Collection<Widget> getAll() {
-        return Arrays.asList(new Widget(1L,"Larry"),
-                new Widget(2L,"Moe"),
-                new Widget(3L,"Curly"));
-    }
+	@Override
+	public Collection<Widget> getAll() {
+		return Arrays.asList(new Widget(1L, "Larry"),
+				new Widget(2L, "Moe"),
+				new Widget(3L, "Curly"));
+	}
 
-    @Override
-    public Optional<Widget> get(Long id) {
-        return Optional.of(new Widget(1L, "Larry"));
-    }
+	@Override
+	public Optional<Widget> get(Long id) {
+		return Optional.of(new Widget(1L, "Larry"));
+	}
 }
