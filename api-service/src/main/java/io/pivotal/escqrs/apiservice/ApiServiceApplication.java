@@ -1,6 +1,8 @@
 package io.pivotal.escqrs.apiservice;
 
+import io.pivotal.escqrs.apiservice.widget.FakeWidgetCommandService;
 import io.pivotal.escqrs.apiservice.widget.FakeWidgetQueryService;
+import io.pivotal.escqrs.apiservice.widget.WidgetCommandService;
 import io.pivotal.escqrs.apiservice.widget.WidgetQueryService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,5 +18,10 @@ public class ApiServiceApplication {
 	@Bean
 	public WidgetQueryService widgetQueryService() {
 		return new FakeWidgetQueryService();
+	}
+
+	@Bean
+	public WidgetCommandService widgetCommandService() {
+		return new FakeWidgetCommandService();
 	}
 }
