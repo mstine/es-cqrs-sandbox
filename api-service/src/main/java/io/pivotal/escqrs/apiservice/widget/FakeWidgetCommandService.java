@@ -8,4 +8,9 @@ public class FakeWidgetCommandService implements WidgetCommandService {
 	public Widget create(Widget widget) {
 		return widget;
 	}
+
+	@Override
+	public void delete(Widget w) {
+		// do nothing
+	}
 }

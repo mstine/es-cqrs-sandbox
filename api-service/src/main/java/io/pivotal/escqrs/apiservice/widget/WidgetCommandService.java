@@ -5,4 +5,6 @@ package io.pivotal.escqrs.apiservice.widget;
  */
 public interface WidgetCommandService {
 	Widget create(Widget widget);
+
+	void delete(Widget w);
 }

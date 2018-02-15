@@ -39,7 +39,16 @@ public class WidgetController {
 		Widget widget = this.commandService.create(w);
 
 		URI uri = MvcUriComponentsBuilder.fromController(getClass()).path("/{id}")
-				.buildAndExpand(4L).toUri();
+				.buildAndExpand(w.getId()).toUri();
 		return ResponseEntity.created(uri).body(widget);
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		return this.queryService.get(id)
+				.map(w -> {
+					commandService.delete(w);
+					return ResponseEntity.noContent().build();
+				}).orElseThrow(() -> new WidgetNotFoundException(id));
 	}
 }

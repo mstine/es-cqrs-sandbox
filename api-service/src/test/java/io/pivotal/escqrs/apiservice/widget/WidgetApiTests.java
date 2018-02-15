@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -61,5 +62,11 @@ public class WidgetApiTests {
 	private String asJson(Object widgets) throws JsonProcessingException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		return objectMapper.writeValueAsString(widgets);
+	}
+
+	@Test
+	public void deleteShouldDeleteWidget() throws Exception {
+		this.mvc.perform(delete("/widgets/{id}", "1"))
+				.andExpect(status().isNoContent());
 	}
 }
