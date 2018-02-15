@@ -13,4 +13,9 @@ public class FakeWidgetCommandService implements WidgetCommandService {
 	public void delete(Widget w) {
 		// do nothing
 	}
+
+	@Override
+	public Widget update(Widget widget) {
+		return widget;
+	}
 }

@@ -7,4 +7,6 @@ public interface WidgetCommandService {
 	Widget create(Widget widget);
 
 	void delete(Widget w);
+
+	Widget update(Widget widget);
 }

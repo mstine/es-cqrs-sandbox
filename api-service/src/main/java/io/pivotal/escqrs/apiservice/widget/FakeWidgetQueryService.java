@@ -17,6 +17,7 @@ public class FakeWidgetQueryService implements WidgetQueryService {
 
 	@Override
 	public Optional<Widget> get(Long id) {
+		if (id.equals(5L)) return Optional.empty();
 		return Optional.of(new Widget(1L, "Larry"));
 	}
 }

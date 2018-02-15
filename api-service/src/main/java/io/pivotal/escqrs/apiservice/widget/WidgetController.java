@@ -3,6 +3,7 @@ package io.pivotal.escqrs.apiservice.widget;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Collection;
@@ -49,6 +50,17 @@ public class WidgetController {
 				.map(w -> {
 					commandService.delete(w);
 					return ResponseEntity.noContent().build();
+				}).orElseThrow(() -> new WidgetNotFoundException(id));
+	}
+
+	@PutMapping("/{id}")
+	ResponseEntity<Widget> update(@PathVariable Long id, @RequestBody Widget w) {
+		return this.queryService.get(id)
+				.map(existing -> {
+					Widget widget = commandService.update(new Widget(w.getId(), w.getName()));
+					URI selfLink = URI.create(ServletUriComponentsBuilder.fromCurrentRequest()
+						.toUriString());
+					return ResponseEntity.created(selfLink).body(widget);
 				}).orElseThrow(() -> new WidgetNotFoundException(id));
 	}
 }
