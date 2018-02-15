@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -31,6 +32,9 @@ public class WidgetApiTests {
 
 	@MockBean
 	private WidgetQueryService queryService;
+
+	@MockBean
+	private WidgetCommandService commandService;
 
 	@Test
 	public void getShouldReturnAllWidgets() throws Exception {
@@ -65,6 +69,8 @@ public class WidgetApiTests {
 	public void postWithBodyShouldCreateWidget() throws Exception {
 		Widget widget = new Widget(4L, "Walter");
 
+		given(this.commandService.create(widget)).willReturn(widget);
+
 		this.mvc.perform(post("/widgets")
 				.accept(MediaType.APPLICATION_JSON)
 				.content(asJson(widget))
@@ -82,6 +88,8 @@ public class WidgetApiTests {
 
 		this.mvc.perform(delete("/widgets/{id}", "1"))
 				.andExpect(status().isNoContent());
+
+		verify(this.commandService).delete(widget);
 	}
 
 	@Test
@@ -95,6 +103,7 @@ public class WidgetApiTests {
 		Widget widget = new Widget(1L, "Jesse");
 
 		given(this.queryService.get(1L)).willReturn(Optional.of(widget));
+		given(this.commandService.update(widget)).willReturn(widget);
 
 		this.mvc.perform(put("/widgets/{id}", "1")
 				.accept(MediaType.APPLICATION_JSON)

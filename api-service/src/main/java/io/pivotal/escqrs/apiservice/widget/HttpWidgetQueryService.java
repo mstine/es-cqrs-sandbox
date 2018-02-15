@@ -3,6 +3,7 @@ package io.pivotal.escqrs.apiservice.widget;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collection;
@@ -11,6 +12,7 @@ import java.util.Optional;
 /**
  * @author Matt Stine
  */
+@Service
 public class HttpWidgetQueryService implements WidgetQueryService {
 
 	private RestTemplate restTemplate = new RestTemplate();
